@@ -1,0 +1,45 @@
+info:
+    app:
+       name: Query Microservice
+       description: FSE Query Application
+       version: 1.0.0
+
+server:
+    port: 8082
+spring:
+    application:
+                name: QueryApplication
+    data:
+        mongodb:
+            authentication-database: employee-two
+            database: employee-two
+            host: localhost
+            port: 27017
+    kafka:
+        bootstrap-servers: localhost:9092
+        consumer:
+            group-id: test-consumer-group
+message:
+    topic:
+        createEmployee: create-employee
+
+eureka:
+        instance:
+                 preferIpAddress: true
+        client:
+                registerWithEureka: true
+                fetchRegistry: true
+                serviceUrl:
+                           defaultZone: http://localhost:8070/eureka/
+
+resilience4j:
+             circuitbreaker:
+                            instances:
+                                      detailsForCustomerSupportApp:
+                                                                   minimumNumberOfCalls: 5
+                                                                   failureRateThreshold: 50
+                                                                   waitDurationInOpenState: 30000
+                                                                   permittedNumberOfCallsInHalfOpenState: 2
+                            configs:
+                                    default:
+                                            registerHealthIndicator: true

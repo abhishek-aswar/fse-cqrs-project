@@ -1,0 +1,34 @@
+info:
+    app:
+       name: Command Microservice
+       description: FSE Command Application
+       version: 1.0.0
+
+server:
+    port: 8081
+
+spring:
+    application:
+                name: CommandApplication
+    data:
+        mongodb:
+            authentication-database: employee-one
+            database: employee-one
+            host: localhost
+            port: 27017
+    kafka:
+        bootstrap-servers: localhost:9092
+        consumer:
+            group-id: test-consumer-group
+message:
+    topic:
+        createEmployee: create-employee
+        
+eureka:
+       instance:
+                preferIpAddress: true
+       client:
+                registerWithEureka: true
+                fetchRegistry: true
+                serviceUrl:
+                           defaultZone: http://localhost:8070/eureka/
